@@ -20,9 +20,13 @@ AFF文章下载小脚本
 	+ cookie是否过期
 	+ 使用的cookie的帐号在浏览器登录的情况下是否能够看到完整的小说内容（Subscribe/Group Member）
 
+* 优化了对于换行的检测
+
 """
 
+import re
 import requests
+
 from lxml import html
 
 # 小说地址
@@ -57,9 +61,9 @@ def isEndOfSentence(sentence):
 	chara2 = sentence[length-2:length-1]
 
 	# 如果句子结尾是空格
-	if chara == "":
+	if chara == " ":
 		# 如果倒数第二个字符是字母或者逗号
-		if chara2.isalpha() or chara == ",":
+		if chara2.isalpha() or chara == "," or chara == " ":
 			return False
 		# 其他情况
 		else:
@@ -109,9 +113,16 @@ def getRawText(url, cookies):
 
 	subpara = tag_left +  para[index1:index2] + tag_right
 
-	return subpara
+	return rm(subpara)
 
-# 去除结点内标签与标签里的内容
+# 去除特殊符号
+def rm(text):
+
+	rm = re.compile(u"\xa0")
+
+	return rm.sub(" ", text)
+
+# 去除结点内标签与 标签里的内容
 def removePairs(text):
 
 	if text:

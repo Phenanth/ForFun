@@ -3,6 +3,8 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 没什么好说的，调用一下百度翻译而已。
 
+* 更新了根据文章长度分段翻译的功能
+
 [百度翻译API首页](http://api.fanyi.baidu.com/api/trans/product/index)
 """
 import requests
@@ -17,8 +19,11 @@ filename_save = "fics_CN.txt"
 
 url = "http://api.fanyi.baidu.com/api/trans/vip/translate"
 
-line_end = "\n"
-sentence_end = "\n\n"
+LINE_END = "\n"
+SENTENCE_END = "\n\n"
+
+partition = 5000
+ENTER = "\n"
 
 
 # ``````````````````````````````````````````````````````````````
@@ -30,16 +35,14 @@ def readFile(filename):
 
 	return text
 
-def init(appid, salt, secretKey):
-
-	text = readFile(filename)
+def init(text, appid, salt, secretKey):
 
 	sign = appid + text + str(salt) + secretKey
 	m1 = hashlib.md5()
 	m1.update(sign.encode("utf-8"))
 	sign = m1.hexdigest()
 
-	return text, sign
+	return sign
 
 def generateParams(text, fromLang, toLang, appid, salt, sign):
 
@@ -54,9 +57,22 @@ def generateParams(text, fromLang, toLang, appid, salt, sign):
 
 	return params
 
-def getResult(url, params):
+def getResponse(url, params):
 
 	return requests.get(url, params).json()["trans_result"]
+
+def generateResult(results):
+
+	fics = ""
+
+	for result in results:
+		# 双语开关为开
+		if isEnAdded:
+			fics = fics + result["src"] + LINE_END
+
+		fics = fics + result["dst"] + SENTENCE_END
+
+	return fics
 
 def saveFile(text, file_name_save):
 
@@ -75,17 +91,43 @@ appid = ''
 # 密钥
 secretKey = ''
 
-text, sign = init(appid, salt, secretKey)
-params = generateParams(text, fromLang, toLang, appid, salt, sign)
+text = readFile(filename)
+length = len(text)
 
-results = getResult(url, params)
+# 如果长度不需要分段
+if length < partition:
 
-fics = ""
-for result in results:
-	# 双语开关为开
-	if isEnAdded:
-		fics = fics + result["src"] + line_end
+	sign = init(text, appid, salt, secretKey)
+	params = generateParams(text, fromLang, toLang, appid, salt, sign)
 
-	fics = fics + result["dst"] + sentence_end
+	results = getResponse(url, params)
 
+	fics = generateResult(results)
+
+else:
+
+	index = 0
+	fics = ""
+
+	# 当没有处理完所有的段落
+	while index != -1:
+
+		index_temp = text.find(ENTER, index + partition)
+
+		if index_temp != -1:
+			text_temp = text[index:index_temp]
+
+		else:
+			text_temp = text[index:length]
+
+		sign = init(text_temp, appid, salt, secretKey)
+		params = generateParams(text_temp, fromLang, toLang, appid, salt, sign)
+
+		results = getResponse(url, params)
+
+		fics = fics + generateResult(results)
+
+		index = index_temp
+
+# 储存翻译结果
 saveFile(fics, filename_save)
