@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from setuptools import setup, find_packages
 
-import docs
-import api
+from docs import config
+from api import __main__
 
 from classes.downloader import common
 from classes.command.cmd import command_server, command_docker
@@ -18,12 +18,12 @@ For usage, you can run `python setup.py --long_description` in the command line,
 
 def main():
 
-    readme = common.readfile(docs.config.README)
+    readme = common.readfile(config.README)
 
     setup(
-        name='opendatawebapi',
+        name='affapi',
         version='1.0.0',
-        description='API for wrapped opendata web API',
+        description='API for wrapped fan fic API',
         long_description=readme,
         # author='Kenneth Reitz',
         # author_email='me@kennethreitz.com',
