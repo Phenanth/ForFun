@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from setuptools import setup, find_packages
 
-from docs import config
-from api import __main__
+import docs
+import api
 
 from classes.downloader import common
 from classes.command.cmd import command_server, command_docker
@@ -18,7 +18,7 @@ For usage, you can run `python setup.py --long_description` in the command line,
 
 def main():
 
-    readme = common.readfile(config.README)
+    readme = common.readfile(docs.config.README)
 
     setup(
         name='affapi',
