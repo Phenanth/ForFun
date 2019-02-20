@@ -46,7 +46,7 @@ def generateResult(results, enattach):
 	return fics
 
 
-def translate(filename, enattach):
+def translate(filename, enattach, partition, fromLang, toLang):
 
 	url = config.url_trans
 	salt = random.randint(32768, 65536)
@@ -54,11 +54,20 @@ def translate(filename, enattach):
 	text = common.readfile(filename)
 	length = len(text)
 
+	if partition == -1:
+		partition = config.partition
+
+	if fromLang == "":
+		fromLang = config.fromLang
+
+	if toLang == "":
+		toLang = config.toLang
+
 	# 如果长度不需要分段
-	if length < config.partition:
+	if length < partition:
 
 		sign = init(text, config.appid, salt, config.secretKey)
-		params = generateParams(text, config.fromLang, config.toLang, config.appid, salt, sign)
+		params = generateParams(text, fromLang, toLang, config.appid, salt, sign)
 
 		results = getResponse(url, params)
 
@@ -72,7 +81,7 @@ def translate(filename, enattach):
 		# 当没有处理完所有的段落
 		while index != -1:
 
-			index_temp = text.find(config.ENTER, index + config.partition)
+			index_temp = text.find(config.ENTER, index + partition)
 
 			if index_temp != -1:
 				text_temp = text[index:index_temp]
@@ -81,7 +90,7 @@ def translate(filename, enattach):
 				text_temp = text[index:length]
 
 			sign = init(text_temp, config.appid, salt, config.secretKey)
-			params = generateParams(text_temp, config.fromLang, config.toLang, config.appid, salt, sign)
+			params = generateParams(text_temp, fromLang, toLang, config.appid, salt, sign)
 
 			results = getResponse(url, params)
 

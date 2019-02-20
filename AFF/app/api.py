@@ -43,7 +43,8 @@ def get_handler(operation, ficCode, ficIndex, translate, enattach):
 		"ficCode": ficCode,
 		"ficIndex": ficIndex,
 		"translate": translate,
-		"enattach": enattach
+		"enattach": enattach,
+		"params": request.args
 	}
 
 	result = core.downloader(requestBody)

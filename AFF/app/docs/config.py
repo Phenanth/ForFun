@@ -15,7 +15,7 @@ The global veriables are defined here.
 directory_path = os.path.abspath(os.path.join(os.sep, 'Users', 'Administrator', 'Documents', 'AFF_Downloader'))
 
 # Use this if you're running server as a docker container(python setup.py docker)
-# directory_path = os.path.abspath(os.path.join(os.sep, "home", "skhr-0324", "project", "data", "AFF_Downloader"))
+# directory_path = os.path.abspath(os.path.join(os.sep, "root", "Documents", "AFF_Downloader"))
 
 # The file path of README
 README = 'README.md'
@@ -43,14 +43,14 @@ end_line = "\n\n"
 
 
 # ``````````````````````````````````````````````````````
-# Translator
+# Translator Default Params
 
 url_trans = "http://api.fanyi.baidu.com/api/trans/vip/translate"
 
 LINE_END = "\n"
 SENTENCE_END = "\n\n"
 
-partition = 2500
+partition = 3000
 ENTER = "\n"
 
 fromLang = 'en'

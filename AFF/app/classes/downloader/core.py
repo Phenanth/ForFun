@@ -121,11 +121,27 @@ def removePairs(text):
 	return fics
 
 
+def getParams(requestBody):
+
+	requestParams = {}
+	params = requestBody["params"]
+
+	if params:
+		for param in params:
+			requestParams.update({param:params[param]})
+
+	# print(requestParams)
+
+	return requestParams
+
+
 # Downloader core function, main steps of the request dealing part
 def downloader(requestBody):
 
 	success = False
 	attachment = ""
+
+	requestParams = getParams(requestBody)
 
 	# GENERATE & ADD parameters based on the original parameters
 	url = preprocess.generate_url(requestBody["ficCode"], requestBody["ficIndex"])
@@ -144,10 +160,19 @@ def downloader(requestBody):
 			
 		if requestBody["translate"] == "trans":
 			enattach = False
+			fromLang = ""
+			toLang = ""
+			partition = -1
 			if requestBody["enattach"] == "attach":
 				enattach = True
+			if "partition" in requestParams:
+				partition = int(requestParams["partition"])
+			if "fromLang" in requestParams:
+				fromLang = requestParams["fromLang"]
+			if "toLang" in requestParams:
+				toLang = requestParams["toLang"]
 
-			fics = translator.translate(config.directory_path + "/" + attachment, enattach)
+			fics = translator.translate(config.directory_path + "/" + attachment, enattach, partition, fromLang, toLang)
 			attachment = preprocess.data_operation(fics, requestBody["operation"])
 
 
