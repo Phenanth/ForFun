@@ -69,12 +69,15 @@ def parameter_handler():
 	if len(params) > 0:
 		url = url + "?"
 
-	if "partition" in params:
+	if "partition" in params and params["partition"] != "":
 		url = url + "partition=" + str(params["partition"]) + "&"
-	if "fromLang" in params:
+	if "fromLang" in params and params["fromLang"] != "":
 		url = url + "fromLang=" + str(params["fromLang"]) + "&"
-	if "toLang" in params:
+	if "toLang" in params and params["toLang"] != "":
 		url = url + "toLang=" + str(params["toLang"])
+
+
+	# print(url)
 
 	if not isValid:
 		result = {
@@ -84,7 +87,6 @@ def parameter_handler():
 
 		return make_response(jsonify(result))
 
-	# print(webParams)
 
 	return redirect(url)
 
