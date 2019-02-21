@@ -46,12 +46,12 @@ def parameter_handler():
 	# print(params)
 
 	if "ficCode" in params and params["ficCode"] != "":
-		url = url + str(params["ficCode"]) + "/"
+		url = url + str(params["ficCode"][0]) + "/"
 		del params["ficCode"]
 	else:
 		isValid = False
 	if "ficIndex" in params and params["ficIndex"] != "": 
-		url = url + str(params["ficIndex"]) + "/"
+		url = url + str(params["ficIndex"][0]) + "/"
 		del params["ficIndex"]
 	else:
 		isValid = False
@@ -70,11 +70,11 @@ def parameter_handler():
 		url = url + "?"
 
 	if "partition" in params and params["partition"] != "":
-		url = url + "partition=" + str(params["partition"]) + "&"
+		url = url + "partition=" + str(params["partition"][0]) + "&"
 	if "fromLang" in params and params["fromLang"] != "":
-		url = url + "fromLang=" + str(params["fromLang"]) + "&"
+		url = url + "fromLang=" + str(params["fromLang"][0]) + "&"
 	if "toLang" in params and params["toLang"] != "":
-		url = url + "toLang=" + str(params["toLang"])
+		url = url + "toLang=" + str(params["toLang"][0])
 
 
 	# print(url)
