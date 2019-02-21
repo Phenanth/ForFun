@@ -5,6 +5,8 @@ from flask import Flask, Response, jsonify, request, make_response, redirect, ur
 from classes.downloader import common
 from classes.downloader import core
 
+from views import home
+
 import docs
 
 """
@@ -30,6 +32,62 @@ get_file:
 
 
 api = Flask(__name__)
+
+# Home interface
+@api.route("/getParameters")
+def parameter_handler():
+
+	isValid = True
+	url = "/getResult/get/"
+
+	webParams = {}
+	params = dict(request.args)
+
+	# print(params)
+
+	if "ficCode" in params and params["ficCode"] != "":
+		url = url + str(params["ficCode"]) + "/"
+		del params["ficCode"]
+	else:
+		isValid = False
+	if "ficIndex" in params and params["ficIndex"] != "": 
+		url = url + str(params["ficIndex"]) + "/"
+		del params["ficIndex"]
+	else:
+		isValid = False
+	if "translation" in params:
+		url = url + "trans" + "/"
+		del params["translation"]
+	else:
+		url = url + "notrans" + "/"
+	if "enattach" in params:
+		url = url + "attach"
+		del params["enattach"]
+	else:
+		url = url + "noattach"
+
+	if len(params) > 0:
+		url = url + "?"
+
+	if "partition" in params:
+		url = url + "partition=" + str(params["partition"]) + "&"
+	if "fromLang" in params:
+		url = url + "fromLang=" + str(params["fromLang"]) + "&"
+	if "toLang" in params:
+		url = url + "toLang=" + str(params["toLang"])
+
+	if not isValid:
+		result = {
+			"success": False,
+			"message": "Wrong parameters, input again please."
+		}
+
+		return make_response(jsonify(result))
+
+	# print(webParams)
+
+	return redirect(url)
+
 
 # Route api, for handling most of the calls
 @api.route("/getResult/<string:operation>/<string:ficCode>/<string:ficIndex>/<string:translate>/<string:enattach>")
@@ -87,8 +145,8 @@ def get_file(fileName, operation):
 		return make_response(jsonify(result))
 
 
-# Route index, for debugging
-@api.route("/")
+# Route test, for debugging
+@api.route("/test")
 def index():
 
 	result = {
@@ -108,4 +166,5 @@ def page_not_found(error):
 
 if __name__ == "__main__":
 
+	api.register_blueprint(home.mod)
 	api.run(host="0.0.0.0", port=8210)

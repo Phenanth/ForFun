@@ -1,0 +1,62 @@
+<html>
+	<head>
+		<title>AFF Downloader</title>
+	</head>
+
+	<body>
+		
+		<h1>Hello, Phenanthrene.</h1>
+
+		<form method="GET" action="/getParameters">
+
+			<div class="ctn-box">
+				<h3>Basic Settings</h3>
+				<div class="input">
+					<label>Code:
+						<input type="text" name="ficCode" placeholder="Input the code of the fiction" value="">
+					</label>
+				</div>
+				<div class="input">
+					<label>Index:
+						<input type="text" name="ficIndex" placeholder="Input the index of the fiction" value="">
+					</label>
+				</div>
+				<div class="input">
+					<label>Translation:
+						<input type="checkbox" name="translation" checked>
+					</label>
+				</div>
+				<div class="input">
+					<label>Origin:
+						<input type="checkbox" name="enattach" checked>
+					</label>
+				</div>	
+			</div>
+
+			<div class="ctn-box">
+				<h3>Advanced Settings</h3>
+				<div class="input">
+					<label>Partition:
+						<input type="text" name="partition" placeholder="Default: 3000" value="">
+					</label>
+				</div>
+				<div class="input">
+					<label>fromLang:
+						<input type="text" name="fromLang" placeholder="Default: en" value="">
+					</label>
+				</div>
+				<div class="input">
+					<label>toLang:
+						<input type="text" name="toLang" placeholder="Default: zh" value="">
+					</label>
+				</div>
+			</div>
+
+			<input type="submit" value="Get Fic">
+		</form>
+
+
+	</body>
+
+
+</html>
