@@ -59,6 +59,10 @@ fromLang = 'en'
 toLang = 'zh'
 
 # APP ID
-appid = '20190212000265967'
+# appid = '20190212000265967'
+# Sub APP ID
+appid = '20190221000269592'
 # 密钥
-secretKey = 'xbpxFLPvxh9MLMikS6sw'
+# secretKey = 'xbpxFLPvxh9MLMikS6sw'
+# Sub Secret Key
+secretKey = 'EMzCxdhMSlN812I7M1GC'
