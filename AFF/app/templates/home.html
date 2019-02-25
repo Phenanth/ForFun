@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<title>AFF Downloader</title>
+		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<style>
 			html {
@@ -9,9 +10,13 @@
 			}
 			body {
 				display: flex;
+				flex-direction: column;
 				justify-content: center;
+				align-items: center;
+				background-color: rgb(135, 216, 205);
 			}
 			.aff-main {
+				margin-top: 2vh;
 				display: flex;
 				flex-direction: column;
 				align-items: center;
@@ -24,60 +29,71 @@
 				display: flex;
 				justify-content: center;
 			}
+			.sct-param {
+				margin-bottom: 10px;
+			}
 			#btn-submit {
 				margin-top: 20px;
 			}
+
+			.ft-ga {
+				color: black;
+				width: 20px;
+				height: 20px;
+				position: fixed;
+				float: right;
+				left: 85%;
+				bottom: 3%;
+			}
+
 		</style>
 	</head>
 	<body class="container">
-		<div class="aff-main col-md-8 col-xs-12">
-			<div class="col-md-6 col-xs-12 aff-header">
-				<h1 class="col-md-12">AFF_D</h1>
+		<div class=" row col-md-8 col-xs-12 aff-main panel panel-info">
+			<div class="col-md-6 col-xs-12 aff-header panel-heading">
+				<h1 class="col-md-12 col-xs-12">AFF Downloader</h1>
 			</div>
-			<div class="col-md-6 col-xs-12 aff-content">
+			<div class="col-md-6 col-xs-12 aff-content panel-body">
 				<form method="GET" action="/getParameters">
 					<div class="ctn-box">
-						<h3>Basic Settings</h3>
-						<div class="input">
-							<label>Code:
-								<input class="form-control" type="text" name="ficCode" placeholder="Input the code of the fiction" value="">
-							</label>
+						<div class="sct-param">
+							<span class="label label-info">Basic</span>
 						</div>
 						<div class="input">
-							<label>Index:
-								<input class="form-control" type="text" name="ficIndex" placeholder="Input the index of the fiction" value="">
-							</label>
+							<label>Code:</label>
+							<input class="form-control" type="text" name="ficCode" placeholder="The code of the fiction" value="">
 						</div>
 						<div class="input">
-							<label>Translation:
-								<input type="checkbox" name="translation">
-							</label>
+							<label>Index:</label>
+							<input class="form-control" type="text" name="ficIndex" placeholder="The index of the fiction" value="">
 						</div>
 						<div class="input">
-							<label>Origin:
-								<input type="checkbox" name="enattach">
-							</label>
+							<label>Translation:</label>
+							<input type="checkbox" name="translation">
+						</div>
+						<div class="input">
+							<label>Origin:</label>
+							<input type="checkbox" name="enattach">
 						</div>
 					</div>
 					<div class="ctn-box">
-						<h3>Advanced Settings</h3>
-						<div class="input">
-							<label>Partition:
-								<input class="form-control" type="text" name="partition" placeholder="Default: 3000" value="">
-							</label>
+						<div class="sct-param">
+							<span class="label label-warning">Advanced</span>
 						</div>
 						<div class="input">
-							<label>fromLang:
-								<input class="form-control" type="text" name="fromLang" placeholder="Default: en" value="">
-							</label>
+							<label>Partition:</label>
+							<input class="form-control" type="text" name="partition" placeholder="Default: 3000" value="">
 						</div>
 						<div class="input">
-							<label>toLang:
-								<input class="form-control" type="text" name="toLang" placeholder="Default: zh" value="">
-							</label>
+							<label>fromLang:</label>
+							<input class="form-control" type="text" name="fromLang" placeholder="Default: en" value="">
+						</div>
+						<div class="input">
+							<label>toLang:</label>
+							<input class="form-control" type="text" name="toLang" placeholder="Default: zh" value="">
 						</div>
 					</div>
-					<input class="btn btn-primary col-md-12" type="submit" id="btn-submit" value="Get Fic">
+					<input class="btn btn-info col-md-6 col-xs-6 col-md-offset-3 col-xs-offset-3" type="submit" id="btn-submit" value="Get Fic">
 				</form>
 			</div>
 		</div>
