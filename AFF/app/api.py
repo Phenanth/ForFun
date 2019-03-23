@@ -70,11 +70,14 @@ def parameter_handler():
 		url = url + "?"
 
 	if "partition" in params and params["partition"] != "":
-		url = url + "partition=" + str(params["partition"]) + "&"
+		if str(params["partition"][0]) != "":
+			url = url + "partition=" + str(params["partition"]) + "&"
 	if "fromLang" in params and params["fromLang"] != "":
-		url = url + "fromLang=" + str(params["fromLang"]) + "&"
+		if str(params["fromLang"][0]) != "":
+			url = url + "fromLang=" + str(params["fromLang"]) + "&"
 	if "toLang" in params and params["toLang"] != "":
-		url = url + "toLang=" + str(params["toLang"])
+		if str(params["toLang"][0]) != "":
+			url = url + "toLang=" + str(params["toLang"])
 
 
 	print(url)
