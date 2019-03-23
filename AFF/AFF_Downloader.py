@@ -30,9 +30,9 @@ import requests
 from lxml import html
 
 # 小说地址
-url = ""
+url = "https://www.asianfanfics.com/story/view/1131577/1/buttons"
 # 登录产生的Cookie
-cookies = dict(cookies_are="")
+cookies = dict(cookies_are="__cfduid=db6a38f42ec2cc7353f1be4a623bd00481548502011; _ga=GA1.2.228529505.1548502020; rtk_gdpr_a=0; rtk_gdpr_c=JP; _pubcid=fee0db94-cdcf-42d1-830b-7f2e56164767; __gads=ID=e5a2fad591bc45d1:T=1548502036:S=ALNI_MYFeUVjfZJ4TNTLjJ8brvLbrvq8YQ; cmVsYXRl=93e817aa5f; YWN0aXZl=1; asianfanficspref=%7B%22siteversion%22%3A1%2C%22theme%22%3A%22blackwhite%22%7D; fitracking_6=yes; fiTrackingDomainParams=%7B%22host%22%3A%22tracking1.firstimpression.io%22%2C%22type%22%3A%22full%22%7D; csrf_aff_cookie=e023a7464b6ce41f4fbb0efdef955401; _gid=GA1.2.2137991285.1553315043; affsession=kl767thiefi03c5eu614krj312cd2ama; _pk_ses.6574.3985=*; fi_utm=direct%7Cdirect%7C%7C%7C%7C; _pk_id.6574.3985=1b54e8d0f1f6e015.1551360924.8.1553315944.1553315062.")
 
 # 保存的文件名
 file_name = "fics.txt"
