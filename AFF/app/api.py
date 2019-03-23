@@ -43,15 +43,17 @@ def parameter_handler():
 	webParams = {}
 	params = dict(request.args)
 
-	print(params)
+	# print(params)
 
 	if "ficCode" in params and params["ficCode"] != "":
-		url = url + str(params["ficCode"]) + "/"
+		# url = url + str(params["ficCode"]) + "/"
+		url = url + str(params["ficCode"][0]) + "/"
 		del params["ficCode"]
 	else:
 		isValid = False
-	if "ficIndex" in params and params["ficIndex"] != "": 
-		url = url + str(params["ficIndex"]) + "/"
+	if "ficIndex" in params and params["ficIndex"] != "":
+		# url = url + str(params["ficIndex"]) + "/" 
+		url = url + str(params["ficIndex"][0]) + "/"
 		del params["ficIndex"]
 	else:
 		isValid = False
@@ -69,18 +71,23 @@ def parameter_handler():
 	if len(params) > 0:
 		url = url + "?"
 
+	# print(params["partition"][0])
+
 	if "partition" in params and params["partition"] != "":
 		if str(params["partition"][0]) != "":
-			url = url + "partition=" + str(params["partition"]) + "&"
+			# url = url + "partition=" + str(params["partition"]) + "&"
+			url = url + "partition=" + str(params["partition"][0]) + "&"
 	if "fromLang" in params and params["fromLang"] != "":
 		if str(params["fromLang"][0]) != "":
-			url = url + "fromLang=" + str(params["fromLang"]) + "&"
+			# url = url + "fromLang=" + str(params["fromLang"]) + "&"
+			url = url + "fromLang=" + str(params["fromLang"][0]) + "&"
 	if "toLang" in params and params["toLang"] != "":
 		if str(params["toLang"][0]) != "":
-			url = url + "toLang=" + str(params["toLang"])
+			# url = url + "toLang=" + str(params["toLang"])
+			url = url + "toLang=" + str(params["toLang"][0])
 
 
-	print(url)
+	# print(url)
 
 	if not isValid:
 		result = {
