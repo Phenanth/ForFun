@@ -43,7 +43,7 @@ def parameter_handler():
 	webParams = {}
 	params = dict(request.args)
 
-	# print(params)
+	print(params)
 
 	if "ficCode" in params and params["ficCode"] != "":
 		# url = url + str(params["ficCode"]) + "/"
@@ -63,10 +63,12 @@ def parameter_handler():
 	else:
 		url = url + "notrans" + "/"
 	if "enattach" in params:
-		url = url + "attach"
+		url = url + "attach" + "/"
 		del params["enattach"]
 	else:
-		url = url + "noattach"
+		url = url + "noattach" + "/"
+
+	url = url + str(params["translator"])
 
 	if len(params) > 0:
 		url = url + "?"
@@ -102,8 +104,8 @@ def parameter_handler():
 
 
 # Route api, for handling most of the calls
-@api.route("/getResult/<string:operation>/<string:ficCode>/<string:ficIndex>/<string:translate>/<string:enattach>")
-def get_handler(operation, ficCode, ficIndex, translate, enattach):
+@api.route("/getResult/<string:operation>/<string:ficCode>/<string:ficIndex>/<string:translate>/<string:enattach>/<string:translator>")
+def get_handler(operation, ficCode, ficIndex, translate, enattach, translator):
 
 	result = {}
 
@@ -114,6 +116,7 @@ def get_handler(operation, ficCode, ficIndex, translate, enattach):
 		"ficIndex": ficIndex,
 		"translate": translate,
 		"enattach": enattach,
+		"translator": translator,
 		"params": request.args
 	}
 

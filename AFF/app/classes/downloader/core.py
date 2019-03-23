@@ -163,6 +163,7 @@ def downloader(requestBody):
 			fromLang = ""
 			toLang = ""
 			partition = -1
+			transoption = requestBody["translator"]
 			if requestBody["enattach"] == "attach":
 				enattach = True
 			if "partition" in requestParams:
@@ -172,7 +173,7 @@ def downloader(requestBody):
 			if "toLang" in requestParams:
 				toLang = requestParams["toLang"]
 
-			fics = translator.translate(config.directory_path + "/" + attachment, enattach, partition, fromLang, toLang)
+			fics = translator.translate(config.directory_path + "/" + attachment, enattach, partition, fromLang, toLang, transoption)
 			attachment = preprocess.data_operation(fics, requestBody["operation"])
 
 

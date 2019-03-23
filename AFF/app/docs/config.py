@@ -52,11 +52,14 @@ url_trans = "http://api.fanyi.baidu.com/api/trans/vip/translate"
 LINE_END = "\n"
 SENTENCE_END = "\n\n"
 
-partition = 3000
+partition = 2000
 ENTER = "\n"
 
-fromLang = 'en'
-toLang = 'zh'
+baidu_fromLang = 'en'
+baidu_toLang = 'zh'
+
+google_fromLang = 'en'
+google_toLang = 'zh-CN'
 
 # APP ID
 appid = '20190212000265967'
