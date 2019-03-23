@@ -68,7 +68,8 @@ def parameter_handler():
 	else:
 		url = url + "noattach" + "/"
 
-	url = url + str(params["translator"])
+	# url = url + str(params["translator"])
+	url = url + str(params["translator"][0])
 
 	if len(params) > 0:
 		url = url + "?"
