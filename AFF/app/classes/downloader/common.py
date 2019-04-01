@@ -25,6 +25,14 @@ def init_test():
 	testdata = "This is the test data from common. If you see this message, this shows the relations of the modules works fine."
 	return testdata
 
+# Judge if the folder path is valid.
+def is_valid_path(file_path):
+    
+    if not os.path.exists(file_path):
+        return False;
+    else:
+        return True;
+
 # Read a file and return its contents
 def readfile(file_path):
 

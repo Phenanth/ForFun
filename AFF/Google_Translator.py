@@ -1,3 +1,10 @@
+"""
+Google翻译小脚本
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+"""
+
 from googletrans import Translator
 
 # Read a file and return its contents

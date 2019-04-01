@@ -154,9 +154,8 @@ def downloader(requestBody):
 	
 	# If successfully get the data from the Web API, operate it depends on the type of operation
 	if len(fics) > 0:
-		success = True
 
-		attachment = preprocess.data_operation(fics, requestBody["operation"])
+		attachment, message = preprocess.data_operation(fics, requestBody["operation"])
 			
 		if requestBody["translate"] == "trans":
 			enattach = False
@@ -173,16 +172,17 @@ def downloader(requestBody):
 			if "toLang" in requestParams:
 				toLang = requestParams["toLang"]
 
-			fics = translator.translate(config.directory_path + "/" + attachment, enattach, partition, fromLang, toLang, transoption)
-			attachment = preprocess.data_operation(fics, requestBody["operation"])
-
-
+			if attachment != "":
+				success = True;
+				fics = translator.translate(config.directory_path + "/" + attachment, enattach, partition, fromLang, toLang, transoption)
+				# attachment = preprocess.data_operation(fics, requestBody["operation"])
 
 	# For debugging and error handling, return all the processing data
 	result = {
 		"success": success,
 		"body": requestBody,
-		"attachment": attachment
+		"attachment": attachment,
+		"message": message
 	}
 	
 	return result

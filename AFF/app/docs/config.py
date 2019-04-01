@@ -15,7 +15,8 @@ The global veriables are defined here.
 # directory_path = os.path.abspath(os.path.join(os.sep, 'Users', 'Administrator', 'Documents', 'AFF_Downloader'))
 
 # Use this if you're running server as a docker container(python setup.py docker)
-directory_path = os.path.abspath(os.path.join(os.sep, "root", "Documents", "AFF_Downloader"))
+# directory_path = os.path.abspath(os.path.join(os.sep, "root", "Documents", "AFF_Downloader"))
+directory_path = os.path.abspath(os.path.join(os.sep, "root", "文档", "AFF_Downloader"))
 
 # directory_path = os.path.abspath(os.path.join(os.sep, "home", "skhr-0324", "project", "data", "AFF_Downloader"))
 

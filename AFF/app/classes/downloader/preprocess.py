@@ -9,6 +9,9 @@ def generate_url(fic_code, fic_index):
 
 def data_operation(data, operation):
 
+	success = True
+	message = ""
+
 	attachment = ""
 	temp_file_name = ""
 
@@ -27,9 +30,18 @@ def data_operation(data, operation):
 	# If the operation is get.
 	elif operation == "get":
 
-		common.savefile(data, file_path, "utf-8")
-		temp_file_name = file_name
+		# If the save path is not valid.
+		if common.is_valid_path(config.directory_path):
+			common.savefile(data, file_path, "utf-8")
+			temp_file_name = file_name
+		else:
+			success = False;
+			message = "Error: Invalid Save Path."
+			temp_file_name = ""
 
-	attachment = common.clip_file_name(temp_file_name)
+	if success:
+		attachment = common.clip_file_name(temp_file_name)
+	else:
+		attachment = ""
 
-	return attachment
+	return attachment, message

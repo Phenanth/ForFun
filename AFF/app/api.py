@@ -43,7 +43,7 @@ def parameter_handler():
 	webParams = {}
 	params = dict(request.args)
 
-	print(params)
+	# print(params)
 
 	if "ficCode" in params and params["ficCode"] != "":
 		# url = url + str(params["ficCode"]) + "/"
@@ -89,7 +89,6 @@ def parameter_handler():
 			# url = url + "toLang=" + str(params["toLang"])
 			url = url + "toLang=" + str(params["toLang"][0])
 
-
 	# print(url)
 
 	if not isValid:
@@ -99,7 +98,6 @@ def parameter_handler():
 		}
 
 		return make_response(jsonify(result))
-
 
 	return redirect(url)
 
@@ -123,7 +121,7 @@ def get_handler(operation, ficCode, ficIndex, translate, enattach, translator):
 
 	result = core.downloader(requestBody)
 
-	if result["success"]:
+	if result["success"] and result["success"] == True:
 		return redirect(url_for("get_file", fileName=result["attachment"], operation=requestBody["operation"]))
 
 	return make_response(jsonify(result))
