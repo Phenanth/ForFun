@@ -48,31 +48,37 @@ async def memory(session: CommandSession):
 	parser.add_argument('-o', '--operation')
 	parser.add_argument('-k', '--key')
 	parser.add_argument('-v', '--value')
-	args = parser.parse_args(session.argv)
 
+	args = parser.parse_args(session.argv)
+	operation = args.operation
 	data = {
-		'operation': '',
+		'operation': operation,
 		'key': '',
 		'value': '',
 		"qq_account": session.ctx['sender']['user_id']
 	}
 
-	data['operation' ] = args.operation
-
-	if data['operation' ] == 'add' or data['operation' ] == 'find' or data['operation' ] == 'del':
+	if operation == 'add' or operation == 'find' or operation == 'del':
 		if not args.key:
 			session.send('参数错误, 请使用--help查询使用帮助')
 		data['key'] = args.key
 
-	if data['operation' ] == 'add':
+	if operation == 'add':
 		if not args.value:
 			session.send('参数错误, 请使用--help查询使用帮助')
 		data['value'] = args.value
 
 	results = await db_memory_operation(data)
 
-	if data['operation'] == 'add':
+	if operation == 'add' or operation == 'del' or operation == 'delall':
 		await session.send(results)
-	elif data['operation'] == 'findall':
-		await session.send('备忘录一览:' + ''.join(('\n\n' + result[0] + '\n' + result[1] ) for result in results))
-
+	elif operation == 'findall':
+		try:
+			await session.send('备忘录一览:' + ''.join(('\n\n' + result[0] + '\n' + result[1]) for result in results))
+		except IndexError:
+			await session.send(results)
+	elif operation == 'find':
+		try:
+			await session.send('指定关键字的备忘录一览:' + ''.join(('\n\n' + result[0] + '\n' + result[1]) for result in results))
+		except IndexError:
+			await session.send(results)
