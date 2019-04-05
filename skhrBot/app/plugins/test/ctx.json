@@ -1,0 +1,24 @@
+ var json= {
+ 	'font': 32701104, 
+ 	'message': [
+ 		{
+ 			'type': 'text', 
+ 			'data': {'text': 'test'}
+ 		}
+ 	], 
+ 	'message_id': 233, 
+ 	'message_type': 'private', 
+ 	'post_type': 'message', 
+ 	'raw_message': 'test', 
+ 	'self_id': 1987739480, 
+ 	'sender': {
+ 		'age': 0, 
+ 		'nickname': '🐧phenanthrene', 
+ 		'sex': 'unknown', 
+ 		'user_id': 986205213
+ 	}, 
+	'sub_type': 'friend', 
+	'time': 1554440760, 
+	'user_id': 986205213, 
+	'to_me': True
+}
