@@ -1,7 +1,20 @@
 # ForFun
 存放为了兴趣写的一些小东西的仓库
 
-## 文件结构
+##  Get started
+
+To start CoolQ, run the command below in `~/` as pwd.
+```bash
+sudo docker run -ti --rm --name cqhttp-test -v $(pwd)/coolq:/home/user/coolq -p 9000:9000 -p 5700:5700 -e COOLQ_ACCOUNT=1987739480 richardchien/cqhttp:latest
+```
+
+Start server
+```bash
+cd Project/ForFun/skhrBot/app
+python3 bot.py
+```
+
+##  文件结构
 
 ### AFF: CPF的闲情逸致
 

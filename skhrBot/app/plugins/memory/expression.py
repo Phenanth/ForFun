@@ -7,7 +7,7 @@ EXPR_DB_MEMORY_DELALL = """UPDATE memory SET isDeleted=1 WHERE qq_account=%s"""
 # EXPR_DB_MEMORY_DELALL = """DELETE FROM memory WHERE qq_account=%s"""
 
 EXPR_ADD_SUCCESS = """添加备忘录事务成功完成"""
-EXPR_DEL_SUCCESS = """删除备忘录事务成功完成"""
+EXPR_DEL_SUCCESS = """删除备忘录事务成功完成（关键字相同的备忘录会被全部删除）"""
 EXPR_DELALL_SUCCESS = """成功清空备忘录"""
 
 EXPR_FAILURE = """事务失败"""

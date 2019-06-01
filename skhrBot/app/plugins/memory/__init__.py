@@ -8,8 +8,7 @@ from nonebot import (
 from .data_operation import db_memory_operation
 
 __plugin_name__ = '命令行风格交互的备忘录'
-__plugin_usage__ = r"""
-命令行风格的备忘录
+__plugin_usage__ = r"""命令行风格的备忘录
 
 使用方法：
 		memory --operation OPERATION [options]
@@ -26,6 +25,7 @@ OPTIONS：
 
 USAGE = r"""
 命令行风格交互的备忘录
+由于原作者似乎去除了命令行风格的支持，本插件也不再进行更新。
 
 使用方法：
 		memory --operation OPERATION [options]
